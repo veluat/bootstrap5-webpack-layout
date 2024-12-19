@@ -1,0 +1,17 @@
+@import "bootstrap/scss/bootstrap";
+
+.custom-button {
+  --bs-btn-border-radius: 0;
+  border-radius: 5px 40px 5px 40px;
+  padding: 10px 20px;
+}
+
+.custom-purple-button {
+  background-color: #6f42c1; /* Фиолетовый цвет */
+  color: white; /* Цвет текста */
+  border: none; /* Уберите рамку, если нужно */
+}
+
+.custom-purple-button:hover {
+  background-color: #5a339e; /* Более темный фиолетовый при наведении */
+}
