@@ -1,4 +1,9 @@
+@use "sass:color" as color;
+@use "sass:math" as math;
 @import "bootstrap/scss/bootstrap";
+
+$purple-600: #6f42c1 !default;
+$purple-700: #5a339e !default;
 
 .custom-button {
   border-radius: 5px 40px 5px 40px;
@@ -6,12 +11,12 @@
 }
 
 .custom-purple-button {
-  background-color: #6f42c1;
+  background-color: $purple-600;
   color: white;
   padding: 10px 35px;
 
   &:hover {
-    background-color: #5a339e;
+    background-color: $purple-700;
   }
 }
 
@@ -43,9 +48,10 @@
   align-items: flex-start;
   justify-content: flex-start;
   padding: 20px;
-  transition: left 0.3s ease, visibility 0.3s ease;
+  transition: all 0.3s ease;
   z-index: 1000;
   visibility: hidden;
+  will-change: left, visibility;
 
   &.show {
     left: 0;
@@ -68,10 +74,10 @@
     font-size: 40px;
     color: black;
   }
-}
 
-.btn-close::after {
-  content: none;
+  &::after {
+    content: none;
+  }
 }
 
 .menu-header {
@@ -90,16 +96,18 @@
     margin: 10px 0;
   }
 
-  .nav-link.active {
-    font-weight: bold;
-    color: black;
+  .nav-link {
+    &.active {
+      font-weight: bold;
+      color: black;
+    }
+
+    &:hover {
+      color: black;
+    }
   }
 
-  .nav-link:hover {
-    color: black;
-  }
-
-  @media (max-width: 991px) {
+  @include media-breakpoint-down(lg) {
     flex-direction: column;
     align-items: flex-start;
 

@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+  <title>Bootstrap + Webpack</title>
+</head>
+<body>
+
+<div class='container'>
+  <nav class="navbar navbar-expand-lg bg-body-tertiary rounded">
+    <div class="container-fluid d-flex justify-content-between align-items-center">
+      <a class="navbar-brand text-dark fw-bold" href="#">Бренд</a>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item">
+            <a class="nav-link active" href="#">Главная</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Каталог</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Цены</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="d-flex align-items-center">
+        <button class="btn btn-primary align-items-center d-flex custom-button me-2" style="gap: 4px;"
+                data-bs-toggle="modal" data-bs-target="#callModal">
+          <span class="bi bi-telephone-fill"></span>
+          <span class="d-none d-lg-inline">Заказать звонок</span>
+        </button>
+        <button class="navbar-toggler custom-toggler" type="button" id="menuToggle" aria-controls="fullscreenMenu"
+                aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+    </div>
+
+    <div id="fullscreenMenu" class="fullscreen-menu">
+      <div class="menu-header align-items-center d-flex">
+        <span>Меню</span>
+        <button class="btn btn-close" id="closeMenu">
+          <span class="custom-close-icon">&times;</span>
+        </button>
+      </div>
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" href="#">Главная</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Каталог</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Цены</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <section class="position-relative" style="height: 100vh; overflow: hidden;">
+    <video id="backgroundVideo" autoplay muted loop
+           class="w-100 h-100 position-absolute top-50 start-50 translate-middle" style="object-fit: cover;">
+      <source src="./assets/videos/video.mp4" type="video/mp4">
+    </video>
+    <img id="backgroundImage" src="./assets/images/image.webp" alt="Background"
+         class="w-100 h-100 position-absolute top-50 start-50 translate-middle"
+         style="object-fit: cover; display: none;">
+    <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-75"></div>
+
+    <div class="d-flex flex-column justify-content-between align-items-start text-white text-start"
+         style="z-index: 1; width: 80%; height: 50%; margin: 0 auto; top: 50%; transform: translateY(50%);">
+      <div class="d-flex flex-column align-items-center align-items-md-start text-white">
+        <h4 class="display-3 mb-0 text-center text-md-start">
+          Купить <span class="text-danger">товар</span> с доставкой
+        </h4>
+        <p class="lead mb-0 text-center text-md-start">
+          Официальный поставщик <span class="text-danger">товаров</span> в Стране!
+        </p>
+      </div>
+      <div class="d-flex flex-column flex-md-row justify-content-md-between align-items-center w-100 mt-auto">
+        <button class="btn custom-button custom-purple-button mb-2 mb-md-0" data-bs-toggle="modal"
+                data-bs-target="#callModal">
+          Заказать звонок
+        </button>
+        <p class="small mb-0 text-center text-md-start">
+          Ваши данные<br/>под надёжной защитой
+        </p></div>
+    </div>
+  </section>
+  <header class="bg-black text-center py-2 mb-4">
+    <h3 class="text-white">Каталог</h3>
+  </header>
+  <div class="row row-cols-1 row-cols-md-3 g-4 d-flex justify-content-center">
+    <div class="col">
+      <div class="card h-100 d-flex flex-column">
+        <img src="./assets/images/image.webp" class="card-img-top img-thumbnail img-fluid" alt="image">
+        <div class="card-body flex-grow-1 d-flex flex-column">
+          <h5 class="card-title">Товар 1</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+            content.</p>
+          <ul>
+            <li>An item</li>
+            <li>A second item</li>
+            <li>A third item</li>
+          </ul>
+        </div>
+        <div class="card-footer">
+          <div class="d-grid gap-2">
+            <a href="#" class="btn btn-primary custom-button">Купить</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card h-100 d-flex flex-column">
+        <img src="./assets/images/image.webp" class="card-img-top img-thumbnail img-fluid" alt="image">
+        <div class="card-body flex-grow-1 d-flex flex-column">
+          <h5 class="card-title">Товар 2</h5>
+        </div>
+        <div class="card-footer">
+          <div class="d-grid gap-2">
+            <a href="#" class="btn btn-primary custom-button">Купить</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Модальное окно -->
+<div class="modal fade" id="callModal" tabindex="-1" aria-labelledby="callModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="callModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn custom-button" style="background-color: #6f42c1; color: white"
+                data-bs-dismiss="modal">Close
+        </button>
+        <button type="button" class="btn btn-primary custom-button" data-bs-dismiss="modal">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

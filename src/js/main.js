@@ -1,7 +1,17 @@
 import '../scss/styles.scss'
-import 'bootstrap'
+import {Collapse, Modal} from 'bootstrap'
 
 document.addEventListener('DOMContentLoaded', function () {
+  const modalElement = document.getElementById('callModal')
+  if (modalElement) {
+    new Modal(modalElement)
+  }
+
+  const collapseElement = document.getElementById('navbarNav')
+  if (collapseElement) {
+    new Collapse(collapseElement, {toggle: false})
+  }
+
   const toggler = document.getElementById('menuToggle')
   const fullscreenMenu = document.getElementById('fullscreenMenu')
   const closeMenuButton = document.getElementById('closeMenu')
@@ -9,35 +19,39 @@ document.addEventListener('DOMContentLoaded', function () {
   const image = document.getElementById('backgroundImage')
   const navLinks = document.querySelectorAll('.navbar-nav .nav-link')
 
-  // Функция для переключения меню
   function toggleMenu() {
     fullscreenMenu.classList.toggle('show')
   }
 
-  // Обработчики для кнопок меню
-  toggler.addEventListener('click', toggleMenu)
-  closeMenuButton.addEventListener('click', toggleMenu)
+  if (toggler && fullscreenMenu) {
+    toggler.addEventListener('click', toggleMenu)
+  }
 
-  // Проверка воспроизведения видео
+  if (closeMenuButton && fullscreenMenu) {
+    closeMenuButton.addEventListener('click', toggleMenu)
+  }
+
   function checkVideoPlayback() {
-    if (window.innerWidth < 768) {
-      video.style.display = 'none'
-      image.style.display = 'block'
-    } else {
-      video.style.display = 'block'
-      image.style.display = 'none'
+    if (video && image) {
+      if (window.innerWidth < 768) {
+        video.style.display = 'none'
+        image.style.display = 'block'
+      } else {
+        video.style.display = 'block'
+        image.style.display = 'none'
+      }
     }
   }
 
-  // Инициализация проверки видео
   checkVideoPlayback()
   window.addEventListener('resize', checkVideoPlayback)
 
-  // Обработчик навигационных ссылок
-  navLinks.forEach(link => {
-    link.addEventListener('click', function () {
-      navLinks.forEach(nav => nav.classList.remove('active'))
-      this.classList.add('active')
+  if (navLinks.length > 0) {
+    navLinks.forEach(link => {
+      link.addEventListener('click', function () {
+        navLinks.forEach(nav => nav.classList.remove('active'))
+        this.classList.add('active')
+      })
     })
-  })
+  }
 })
